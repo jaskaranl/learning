@@ -1,3 +1,5 @@
+// const fs from "fs"
+var fs = require('fs');
 function zalgoContainer(cbTaker, cb) {
     var sync = true;
     cbTaker(cbWrap);
@@ -39,3 +41,4 @@ function consistentReadSync (filename) {
         return data
     }
 }
+
