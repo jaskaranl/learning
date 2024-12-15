@@ -1,0 +1,2 @@
+import can be made sync or async
+for async we use import() function which returns a promise

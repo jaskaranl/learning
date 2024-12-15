@@ -15,3 +15,18 @@ provides additional arguments to be passed to the listeners.
 
 • removeListener(event, listener): This method removes a listener for the
     specified event type
+
+
+    An EventEmitter has a very simple built-in mechanism for warning the developer
+    about possible memory leaks. When the count of listeners registered to an event
+    exceeds a specific amount (by default, 10), the EventEmitter will produce a warning.
+    Sometimes, registering more than 10 listeners is completely fine, so we can adjust
+    this limit by using the setMaxListeners() method of the EventEmitter.
+
+
+
+    /We can use the convenience method once(event, listener)
+    in place of on(event, listener) to automatically unregister
+    a listener after the event is received for the first time. However,
+    be advised that if the event we specify is never emitted, then the
+    listener is never released, causing a memory leak.
