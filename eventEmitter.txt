@@ -14,4 +14,4 @@ provides additional arguments to be passed to the listeners.
 
 
 • removeListener(event, listener): This method removes a listener for the
-    specified event type.
+    specified event type
