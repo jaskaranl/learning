@@ -1,0 +1,64 @@
+/**
+ * Read FAQs section on the left for more information on how to use the editor
+**/
+/** Do not delete or change any function name **/
+
+function getUserById(id, callback) {
+  // simulating async request
+  const randomRequestTime = Math.floor(Math.random() * 100) + 200;
+
+  setTimeout(() => {
+    callback("User" + id)
+  }, randomRequestTime);
+}
+
+function next () { // (1)
+while (running < concurrency && index < tasks.length) {
+const task
+=
+tasks[index++]
+task(() => { // (2)
+if (++completed
+===
+tasks.length) {
+return finish()
+}
+running--
+next()
+})
+running++
+}
+}
+function mapLimit(inputs, limit, iterateeFn, callback) {
+  // write your solution here
+
+
+  let running = 0;
+  let completed = 0;
+  let index = 0
+
+  let result = []
+  function d(data) {
+     result.push(data);
+    console.log(index, data, result)
+    if (index >= inputs.length) {
+      return;
+    }
+   
+    // running--
+    iterateeFn(inputs[index++], d)
+  }
+
+  while (running < limit && index < inputs.length) {
+    const data = inputs[index++];
+    iterateeFn(data, d);
+    running++;
+  }
+
+  callback(result)
+
+}
+
+mapLimit([1, 2, 3, 4, 5], 2, getUserById, (allResults) => {
+  console.log('output:', allResults) // ["User1", "User2", "User3", "User4", "User5"]
+})
