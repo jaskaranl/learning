@@ -6,29 +6,13 @@
 function getUserById(id, callback) {
   // simulating async request
   const randomRequestTime = Math.floor(Math.random() * 100) + 200;
-
+console.log(id)
   setTimeout(() => {
-    callback("User" + id)
-  }, randomRequestTime);
+    callback("User" + id,)
+  }, Math.random() * 2000);
 }
 
-function next () { // (1)
-while (running < concurrency && index < tasks.length) {
-const task
-=
-tasks[index++]
-task(() => { // (2)
-if (++completed
-===
-tasks.length) {
-return finish()
-}
-running--
-next()
-})
-running++
-}
-}
+
 function mapLimit(inputs, limit, iterateeFn, callback) {
   // write your solution here
 
@@ -36,26 +20,33 @@ function mapLimit(inputs, limit, iterateeFn, callback) {
   let running = 0;
   let completed = 0;
   let index = 0
-
   let result = []
-  function d(data) {
-     result.push(data);
-    console.log(index, data, result)
-    if (index >= inputs.length) {
-      return;
+  let data= inputs.map((el)=>{
+      return ()=>  iterateeFn(el, d);
+    
+      
+  })
+//   console.log(da)
+  
+  function g() {
+    while (running < limit && index < inputs.length) {
+    
+      const task = data[index++];
+      task();
+      running++;
     }
-   
-    // running--
-    iterateeFn(inputs[index++], d)
   }
 
-  while (running < limit && index < inputs.length) {
-    const data = inputs[index++];
-    iterateeFn(data, d);
-    running++;
-  }
 
-  callback(result)
+  process.nextTick(g)
+
+    function d(data) {
+      result.push(data);
+      console.log( data, result)
+      running--
+    process.nextTick(g)
+    }
+
 
 }
 
